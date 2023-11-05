@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cypress Shared Worker Test</title>
+</head>
+<body>
+  <h1>Cypress Shared Worker Test</h1>
+  <p>
+    Shared Worker Output:
+    <span id="worker-output">Waiting for message..</span>
+  </p>
+  <script>
+    const worker = new SharedWorker("shared-worker.js");
+    worker.port.onmessage = (e) => {
+      document.getElementById('worker-output').innerText = e.data;
+    };
+    worker.port.start();
+  </script>
+</body>
+</html>
